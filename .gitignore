@@ -9,6 +9,6 @@
 *.so
 *.pcm
 old/
+bin/*
 build/
 backup/
-!.gitkeep
