@@ -1,0 +1,14 @@
+.DS_Store
+*.[ado]
+*~
+\#*\#
+*.root
+*.dat.gz
+*.wrl
+*.org
+*.so
+*.pcm
+old/
+build/
+backup/
+!.gitkeep
