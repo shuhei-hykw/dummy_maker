@@ -1,6 +1,6 @@
 /**
  *  file: EventManager.cc
- *  date: 2016.05.20
+ *  date: 2016.11.20
  *
  */
 
@@ -274,7 +274,7 @@ EventManager::ProcessEvent( void )
       // 		  << std::endl;
       // 	continue;
       // }
-#if 1
+#if 0
       std::cout << "did: " << did << " lid: "
 		<< std::setw(2) << lid << " wire: "
 		<< std::setw(3) << channel << " dl: "
