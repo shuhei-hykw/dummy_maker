@@ -1,6 +1,6 @@
 /**
  *  file: VmeCaenV792.cc
- *  date: 2016.02.01
+ *  date: 2017.01.12
  *
  */
 
@@ -35,7 +35,7 @@ VmeCaenV792::VmeCaenV792( const std::string& module_name,
     | ( ( m_crate_number & k_crate_number_mask ) << k_crate_number_shift )
     | ( ( m_geo_address & k_header_geo_mask ) << k_header_geo_shift )
     | ( ( k_header_magic & k_word_type_mask ) << k_word_type_shift );
-  
+
   // ////////// footer
   m_data_word[k_footer_position]
     = ( ( g_event_number & k_event_number_mask ) << k_event_number_shift )
@@ -57,7 +57,7 @@ VmeCaenV792::Clear( void )
 {
   static const std::string func_name("["+class_name+"::"+__func__+"()]");
 
-  for( int channel=0; channel<k_n_channel; ++channel ){
+  for( std::size_t channel=0; channel<k_n_channel; ++channel ){
     SetAdc( channel, 0 );
     m_overflow[channel]        = 0;
     m_under_threshold[channel] = 0;

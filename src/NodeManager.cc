@@ -1,6 +1,6 @@
 /**
  *  file: NodeManager.hh
- *  date: 2016.04.25
+ *  date: 2017.01.12
  *
  */
 
@@ -216,7 +216,7 @@ bool
 NodeManager::SetEventNumber( unsigned int event_number )
 {
   static const std::string func_name("["+class_name+"::"+__func__+"()]");
-  for( NodeListIterator itr=m_node_list.begin(), 
+  for( NodeListIterator itr=m_node_list.begin(),
 	 itr_end=m_node_list.end(); itr!=itr_end; ++itr ){
     itr->second->SetEventNumber( event_number );
   }
@@ -257,13 +257,13 @@ NodeManager::PrintRegisteredAll( void )
 
   // std::cout << "#D " << func_name << std::endl;
 
-  unsigned int nest;
-  std::string  space;
+  std::size_t nest;
+  std::string space;
 
   for( NodeIterator nitr=m_node_container.begin(),
 	 nitr_end=m_node_container.end(); nitr!=nitr_end; ++nitr ){
     nest = (*nitr)->GetNest();
-    for( int ii=0; ii<nest; ++ii ) space += "   ";
+    for( std::size_t ii=0; ii<nest; ++ii ) space += "   ";
     std::cout << space
 	      << (*nitr)->GetNodeType() << " : "
 	      << (*nitr)->GetNodeName() << " ("
@@ -287,7 +287,7 @@ NodeManager::PrintRegisteredAll( void )
 
 	nest  = (*citr)->GetNest();
 	space = "";
-	for( int ii=0; ii<nest-1; ++ii ) space += "\t";
+	for( std::size_t ii=0; ii<nest-1; ++ii ) space += "\t";
 
 	std::cout << space << "\\_ "
 		  << (*citr)->GetNodeType() << " : "
@@ -311,4 +311,3 @@ NodeManager::PrintRegisteredAll( void )
     }
   }
 }
-

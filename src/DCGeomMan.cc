@@ -77,7 +77,7 @@ DCGeomMan::GetLocalZ( int lnum ) const
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( geom_record ) return geom_record->Length();
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -91,7 +91,7 @@ DCGeomMan::GetResolution( int lnum ) const
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( geom_record ) return geom_record->Resolution();
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -105,7 +105,7 @@ DCGeomMan::GetTiltAngle( int lnum ) const
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( geom_record ) return geom_record->TiltAngle();
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -119,7 +119,7 @@ DCGeomMan::GetRotAngle1( int lnum ) const
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( geom_record ) return geom_record->RotationAngle1();
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -133,7 +133,7 @@ DCGeomMan::GetRotAngle2( int lnum ) const
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( geom_record ) return geom_record->RotationAngle2();
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -147,7 +147,7 @@ DCGeomMan::GetdXdW( int lnum ) const
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( geom_record ) return geom_record->dXdW();
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -161,7 +161,7 @@ DCGeomMan::GetGlobalPosition( int lnum ) const
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( geom_record ) return geom_record->Pos();
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -175,7 +175,7 @@ DCGeomMan::NormalVector( int lnum ) const
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( geom_record ) return geom_record->NormalVector();
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -189,7 +189,7 @@ DCGeomMan::UnitVector( int lnum ) const
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( geom_record ) return geom_record->UnitVector();
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -203,12 +203,12 @@ DCGeomMan::GetRecord( int lnum ) const
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( geom_record ) return geom_record;
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
 }
- 
+
 //______________________________________________________________________________
 double
 DCGeomMan::calcWirePosition( int lnum, double wire ) const
@@ -219,7 +219,7 @@ DCGeomMan::calcWirePosition( int lnum, double wire ) const
     return geom_record->WirePos(wire);
   }
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -235,12 +235,12 @@ DCGeomMan::calcWireNumber( int lnum, double pos ) const
     return geom_record->WireNumber(pos);
   }
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
 }
- 
+
 //______________________________________________________________________________
 void
 DCGeomMan::clearElements( void )
@@ -263,12 +263,9 @@ DCGeomMan::Initialize( void )
   char cname[MaxChar];
   int id;
   double xs, ys, zs, ta, ra1, ra2, l, res, w0, dd, ofs;
-  double X_offset = 0.0;
-  double Y_offset = 0.0;
-  double Z_offset = 0.0;
   //double A = 0.8/750.;
 
-  std::ifstream f(m_file_name.c_str());
+  std::ifstream f( m_file_name.c_str() );
   if( !f.is_open() ){
     std::cerr << "#E " << funcname
 	      << " file open fail : " << m_file_name << std::endl;
@@ -283,14 +280,14 @@ DCGeomMan::Initialize( void )
     if( sscanf( line.c_str(), "%d %s %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
 		&id, cname, &xs, &ys, &zs, &ta, &ra1, &ra2, &l, &res,
 		&w0, &dd, &ofs ) == 13 ){
-      DCGeomRecord *geom_record = new DCGeomRecord( id, cname, xs, ys, zs, 
+      DCGeomRecord *geom_record = new DCGeomRecord( id, cname, xs, ys, zs,
 					     ta, ra1, ra2, l, res,
 					     w0, dd, ofs );
       DCGeomRecord *pre_record = m_geom_container[id];
       m_geom_container[id] = geom_record;
 
       if(strcmp(cname,"TOF")==0) m_tof_id = id;
-	
+
       if( pre_record ){
 	std::cerr << funcname << ": duplicated id number. "
 		  << " following record is deleted." << std::endl;
@@ -302,7 +299,7 @@ DCGeomMan::Initialize( void )
       std::cerr << funcname << " Invalid format : " << line << std::endl;
     }
   }
-  
+
   f.close();
 
   std::cout << funcname << " Initialization finished." << std::endl;
@@ -316,7 +313,7 @@ DCGeomMan::GetDetectorIDList( void ) const
 {
   std::vector<int> vlist;
   vlist.reserve(m_geom_container.size());
-  std::map <int, DCGeomRecord *>::const_iterator 
+  std::map <int, DCGeomRecord *>::const_iterator
     itr=m_geom_container.begin(), end=m_geom_container.end();
 
   for(; itr!=end; ++itr ){
@@ -333,7 +330,7 @@ DCGeomMan::Local2GlobalPos( int lnum, const ThreeVector& in ) const
   static const std::string funcname("["+classname+"::"+__func__+"()]");
 
   DCGeomRecord *geom_record = m_geom_container[lnum];
-  if( !geom_record ) 
+  if( !geom_record )
     throw std::out_of_range(funcname+": No record" );
 
   double x = geom_record->dxds()*in.x() + geom_record->dxdt()*in.y()
@@ -354,20 +351,20 @@ DCGeomMan::Global2LocalPos( int lnum, const ThreeVector& in ) const
 
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( !geom_record ){
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
 
-  double x 
+  double x
     = geom_record->dsdx()*(in.x()-geom_record->Pos().x())
     + geom_record->dsdy()*(in.y()-geom_record->Pos().y())
     + geom_record->dsdz()*(in.z()-geom_record->Pos().z());
-  double y 
+  double y
     = geom_record->dtdx()*(in.x()-geom_record->Pos().x())
     + geom_record->dtdy()*(in.y()-geom_record->Pos().y())
     + geom_record->dtdz()*(in.z()-geom_record->Pos().z());
-  double z 
+  double z
     = geom_record->dudx()*(in.x()-geom_record->Pos().x())
     + geom_record->dudy()*(in.y()-geom_record->Pos().y())
     + geom_record->dudz()*(in.z()-geom_record->Pos().z());
@@ -383,7 +380,7 @@ DCGeomMan::Local2GlobalDir( int lnum, const ThreeVector& in ) const
 
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( !geom_record ){
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -406,7 +403,7 @@ DCGeomMan::Global2LocalDir( int lnum, const ThreeVector& in ) const
 
   DCGeomRecord *geom_record = m_geom_container[lnum];
   if( !geom_record ){
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
 	      << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -432,7 +429,7 @@ DCGeomMan::SetResolution( int lnum, double res ) const
     return;
   }
   else{
-    std::cerr << funcname << ": No record. Layer#=" 
+    std::cerr << funcname << ": No record. Layer#="
               << lnum << std::endl;
     throw std::out_of_range(funcname+": No record" );
   }
@@ -444,7 +441,7 @@ DCGeomMan::GetDetectorId( const std::string &detName ) const
 {
   static const std::string funcname("["+classname+"::"+__func__+"()]");
 
-  std::map <int, DCGeomRecord *>::const_iterator 
+  std::map <int, DCGeomRecord *>::const_iterator
     itr=m_geom_container.begin(), end=m_geom_container.end();
 
   for(; itr!=end; ++itr ){

@@ -1,6 +1,6 @@
 /**
  *  file: EventManager.cc
- *  date: 2016.11.20
+ *  date: 2017.01.12
  *
  */
 
@@ -247,9 +247,9 @@ EventManager::ProcessEvent( void )
       int pid     = m_event.pidSdc[ih];
       if( pid!=321 ) continue;
       int did     = m_event.didSdc[ih];
-      int isdc    = m_event.didSdc[ih]/10000;
-      int layer   = (m_event.didSdc[ih] -isdc*10000)/1000;
-      int channel = m_event.didSdc[ih] -isdc*10000 -layer*1000;
+      int isdc    = did/10000;
+      int layer   = ( did -isdc*10000 )/1000;
+      int channel = did -isdc*10000 -layer*1000;
       int lid = layer;
       if( isdc==1 ) lid +=  0;
       if( isdc==2 ) lid += 30;
@@ -375,7 +375,7 @@ EventManager::FinalizeEvent( void )
   static EventRecorder& event_recorder = EventRecorder::GetInstance();
   if( !event_recorder.IsOpen() ){
     std::cout << "#D " << func_name << " "
-	      << "EventRecorder is not open ..." << std::endl;  
+	      << "EventRecorder is not open ..." << std::endl;
     return false;
   }
 
