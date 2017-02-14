@@ -1,12 +1,14 @@
-/*
- *  ThreeVector.hh
+/**
+ *  file: ThreeVector.hh
+ *  date: 2017.02.03
+ *
  */
 
 #ifndef THREE_VECTOR_HH
 #define THREE_VECTOR_HH
 
-#include <CLHEP/Vector/ThreeVector.h>
+#include <TVector3.h>
 
-typedef CLHEP::Hep3Vector ThreeVector;
+typedef TVector3 ThreeVector;
 
 #endif

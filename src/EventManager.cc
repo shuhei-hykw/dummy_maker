@@ -1,6 +1,6 @@
 /**
  *  file: EventManager.cc
- *  date: 2017.01.12
+ *  date: 2017.02.03
  *
  */
 
@@ -255,7 +255,7 @@ EventManager::ProcessEvent( void )
       if( isdc==2 ) lid += 30;
       if( isdc==3 ) lid += 34;
       if( isdc==4 ) lid += 36;
-      double wire_pos = geom_manager.calcWirePosition( lid, channel );
+      double wire_pos = geom_manager.CalcWirePosition( lid, channel );
       const double Deg2Rad = acos(-1.)/180.;
       double angle = geom_manager.GetTiltAngle( lid ) * Deg2Rad;
       // double z = geom_manager.GetLocalZ( lid );
